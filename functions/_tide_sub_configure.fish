@@ -20,16 +20,17 @@ function _tide_sub_configure
         return 1
     end
 
+    set -e _tide_quit_configure
+
     set -g fake_columns $COLUMNS
     test $fake_columns -gt 90 && set fake_columns 90
     set -g fake_lines $LINES
 
-    set -g _tide_selected_option
     _next_choice all/style
 end
 
 function _next_choice -a nextChoice
-    set -q _tide_selected_option || return 0
+    set -q _tide_quit_configure && return 0
     set -l cmd (string split '/' $nextChoice)[2]
     $cmd
 end
@@ -50,16 +51,12 @@ function _tide_option -a symbol text
 end
 
 function _tide_menu
-    set -l list_with_slashes (string join '/' $_tide_option_list)
-
     printf '%s\n' \
         '(r) Restart from the beginning' \
-        '(q) Quit and do nothing'\n
+        '(q) Quit and do nothing'\n >&2
 
     while true
-        set_color -o
-        read --nchars 1 --prompt-str "Choice [$list_with_slashes/r/q] " input
-        set_color normal
+        read --nchars 1 --prompt-str (set_color -o)"Choice ["(string join '/' $_tide_option_list r q)"] "(set_color normal) input
 
         switch $input
             case r
@@ -67,13 +64,13 @@ function _tide_menu
                 _next_choice all/style
                 break
             case q
-                set -e _tide_selected_option # Skip through all the _next_choices
+                set -g _tide_quit_configure # Skip through all the _next_choices
                 set -e _tide_option_list
                 clear
                 break
             case $_tide_option_list
                 set -e _tide_option_list
-                set -g _tide_selected_option $input
+                echo $input
                 break
         end
     end

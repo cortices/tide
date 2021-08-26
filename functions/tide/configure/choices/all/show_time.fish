@@ -12,8 +12,7 @@ function show_time
     _tide_option 3 '12-hour format'
     _tide_display_prompt fake_tide_time_format '%r'
 
-    _tide_menu
-    switch $_tide_selected_option
+    switch (_tide_menu)
         case 1
             set -g fake_tide_time_format ''
             set -e fake_tide_right_prompt_items[-1]

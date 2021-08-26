@@ -21,8 +21,7 @@ function powerline_prompt_heads
     set -g fake_tide_right_prompt_prefix ''
     _tide_display_prompt
 
-    _tide_menu
-    switch $_tide_selected_option
+    switch (_tide_menu)
         case 1
             set -g fake_tide_left_prompt_suffix ''
             set -g fake_tide_right_prompt_prefix ''

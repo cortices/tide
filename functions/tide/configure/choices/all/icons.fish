@@ -8,8 +8,7 @@ function icons
     _enable_icons
     _tide_display_prompt
 
-    _tide_menu
-    switch $_tide_selected_option
+    switch (_tide_menu)
         case 1
             _disable_icons
     end

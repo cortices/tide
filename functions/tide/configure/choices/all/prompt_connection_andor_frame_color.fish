@@ -21,8 +21,7 @@ function prompt_connection_andor_frame_color
     _tide_option 4 Darkest
     _tide_display_prompt fake_tide_prompt_color_frame_and_connection 444444
 
-    _tide_menu
-    switch $_tide_selected_option
+    switch (_tide_menu)
         case 1
             set -g fake_tide_prompt_color_frame_and_connection 808080
         case 2

@@ -10,8 +10,7 @@ function prompt_connection
     _tide_option 3 Solid
     _tide_display_prompt fake_tide_prompt_icon_connection '─'
 
-    _tide_menu
-    switch $_tide_selected_option
+    switch (_tide_menu)
         case 1
             set -g fake_tide_prompt_icon_connection ' '
         case 2

@@ -10,8 +10,7 @@ function prompt_spacing
     _tide_display_prompt
     _tide_display_prompt
 
-    _tide_menu
-    switch $_tide_selected_option
+    switch (_tide_menu)
         case 1
             set -g fake_tide_prompt_add_newline_before false
         case 2

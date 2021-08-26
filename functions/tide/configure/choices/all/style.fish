@@ -13,8 +13,7 @@ function style
     _load_config rainbow
     _tide_display_prompt
 
-    _tide_menu
-    switch $_tide_selected_option
+    switch (_tide_menu)
         case 1
             _load_config lean
             set -g _tide_configure_style lean

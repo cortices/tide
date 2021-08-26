@@ -6,8 +6,7 @@ function finish
     _tide_option y Yes
     printf '%b' '\n'
 
-    _tide_menu
-    switch $_tide_selected_option
+    switch (_tide_menu)
         case y
             _tide_finish
             clear
@@ -15,7 +14,7 @@ function finish
 end
 
 function _tide_finish
-    set -e _tide_selected_option # Skip through all the _next_choices
+    set -g _tide_quit_configure # Skip through all the _next_choices
 
     # Deal with prompt char/vi mode
     if contains character $fake_tide_left_prompt_items

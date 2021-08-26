@@ -17,8 +17,7 @@ function classic_prompt_color
     _set_all_items_bg_color 1C1C1C
     _tide_display_prompt
 
-    _tide_menu
-    switch $_tide_selected_option
+    switch (_tide_menu)
         case 1
             _set_all_items_bg_color 585858
         case 2
