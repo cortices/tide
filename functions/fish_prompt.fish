@@ -19,7 +19,7 @@ function fish_prompt
     _tide_last_status=$status _tide_last_pipestatus=$pipestatus if not set -e _tide_self_repainting
         jobs --query
         fish --command "_tide_jobs_status=$status CMD_DURATION=$CMD_DURATION COLUMNS=$COLUMNS \
-            fish_bind_mode=$fish_bind_mode set -U $_tide_prompt_var (_tide_prompt)" &
+            fish_bind_mode=$fish_bind_mode set -U $_tide_prompt_var ($_tide_prompt_function)" &
         builtin disown
 
         command kill $_tide_last_pid 2>/dev/null

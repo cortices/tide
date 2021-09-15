@@ -8,9 +8,13 @@ function _tide_cache_variables
     contains git $tide_left_prompt_items $tide_right_prompt_items &&
         set -gx _tide_location_color (set_color $tide_git_color_branch || echo)
 
-    # two line prompt
-    contains newline $tide_left_prompt_items &&
+    # prompt height
+    if contains newline $tide_left_prompt_items
         set_color $tide_prompt_color_frame_and_connection -b normal | read -gx _tide_prompt_and_frame_color
+        set -g _tide_prompt_function _tide_two_line_prompt
+    else
+        set -g _tide_prompt_function _tide_one_line_prompt
+    end
 
     # newline before
     set -e _tide_add_newline
